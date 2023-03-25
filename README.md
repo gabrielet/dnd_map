@@ -1,2 +1,2 @@
-# dnd_map
+# d&d map
 simple shiny app that allows uploading a map and a set of characters for combat situations in roleplay games like dungeons and dragons, pathfinder, and more...
