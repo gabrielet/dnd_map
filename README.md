@@ -1,4 +1,4 @@
-# d&d map
+# exploration and combat map for rpg games
 simple shiny app that allows uploading a map and a set of characters for combat situations in roleplay games like d&d, pathfinder, and more...
 
 the characters table must look like this:
