@@ -17,3 +17,5 @@ monster_1,50,40,0
 `hidden` column represents the status of the character. if they are hidden, i.e. they can't be seen, set it to 1. 0 otherwise.
 
 the map can be loaded from a jpeg or jpg file. i suggest to use a file below 400kb to run the app smoothly. the heavier the image the more time to update after a character is moved.
+
+The app is hosted by shinyapps.io [here]([url](https://gabrit.shinyapps.io/rpg_exploration/)).
