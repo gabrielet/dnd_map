@@ -11,8 +11,9 @@ character_3,20,20,0
 monster_1,50,40,0
 ```
 `character` column is the character name
+
 `x_pos` and `y_pos` represent character's initial position (x, y)
+
 `hidden` column represents the status of the character. if they are hidden, i.e. they can't be seen, set it to 1. 0 otherwise.
 
-the map can be loaded from a jpeg or jpg file.
-suggested to use a file below 400kb to be able to run the app smoothly. the heavier the image the more time to load and use it.
+the map can be loaded from a jpeg or jpg file. i suggest to use a file below 400kb to run the app smoothly. the heavier the image the more time to update after a character is moved.
