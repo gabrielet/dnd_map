@@ -20,7 +20,7 @@ ui <- fluidPage(
 				br(),
 				h5(paste("You will need to upload a comma-separated file containing the characters and a map in format jpg/jpeg.",
 					"The comma-separated file must follow this structure (copy-paste, save, and modify it as needed):",
-					"player,x_pos,y_pos,hidden",
+					"character,x_pos,y_pos,hidden",
 					"character_1,10,20,0",
 					"character_2,10,30,0",
 					"character_3,20,20,0",
@@ -47,33 +47,33 @@ ui <- fluidPage(
 		# button to load table
 		actionButton("load_data", label="Load characters and map", choices=NULL),
 
-		# player-selection input dialog
-		selectInput("player", label="Select character", choices=NULL),
+		# character-selection input dialog
+		selectInput("character", label="Select character", choices=NULL),
 		
-		# add player input dialog
+		# add character input dialog
 		textInput("add_me", label="Add character"),
 
-		# remove-player selection input dialog
-		actionButton("remove_player", label="Remove character", choiches=NULL),
+		# remove-character selection input dialog
+		actionButton("remove_character", label="Remove character", choiches=NULL),
 
-		# remove-player selection input dialog
-		actionButton("add_player", label="Add character", choiches=NULL),
+		# remove-character selection input dialog
+		actionButton("add_character", label="Add character", choiches=NULL),
 
-		# partially hide player from input dialog
-		actionButton("partially_hide_player", label="Partially hide character", choiches=NULL),
+		# partially hide character from input dialog
+		actionButton("partially_hide_character", label="Partially hide character", choiches=NULL),
 
-		# hide player from input dialog
-		actionButton("completely_hide_player", label="Hide character", choiches=NULL),
+		# hide character from input dialog
+		actionButton("completely_hide_character", label="Hide character", choiches=NULL),
 
-		# hide player from input dialog
-		actionButton("un_hide_player", label="Un-hide character", choiches=NULL),
+		# hide character from input dialog
+		actionButton("un_hide_character", label="Un-hide character", choiches=NULL),
 
 		# dowload current table, to use it next session
 		downloadButton('download',"Download characters table")
 
 	),
 
-	# render the map showing where the players are located
+	# render the map showing where the characters are located
 	mainPanel(
 
 		# moving character with mouse

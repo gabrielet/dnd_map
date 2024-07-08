@@ -7,7 +7,7 @@ server <- function(input, output, session) {
 	# load map
 	data_map <- reactiveVal(NULL)
 
-	# update players names once the table is loaded
+	# update characters names once the table is loaded
 	observeEvent(input$load_data, {
 	
 		# read input table
@@ -15,7 +15,7 @@ server <- function(input, output, session) {
 		# load table
 		loaded_table <- read.csv(my_table$datapath, header=TRUE, sep=",")
 		# update the playing characters
-		updateSelectInput(session, "player", "Select character", choices=loaded_table$player)
+		updateSelectInput(session, "character", "Select character", choices=loaded_table$character)
 		
 		# add shape to characters
 		loaded_table$shape <- rep(21, nrow(loaded_table))
@@ -38,22 +38,22 @@ server <- function(input, output, session) {
 	
 		# Get the x and y coordinates at the click of the mouse
 		char_src <- data_src()
-		char_src <- data_src(move_player(char_src, input$player, x=input$plot_click$x, y=input$plot_click$y))
+		char_src <- data_src(move_character(char_src, input$character, x=input$plot_click$x, y=input$plot_click$y))
 		
 	})
 
-	# remove player
-	observeEvent(input$remove_player, {
+	# remove character
+	observeEvent(input$remove_character, {
 	
 		char_src <- data_src()
-		char_src <- data_src(remove_character(char_src, input$player))
+		char_src <- data_src(remove_character(char_src, input$character))
 		# update the playing characters
-		updateSelectInput(session, "player", "Select character", choices=data_src()$player)
+		updateSelectInput(session, "character", "Select character", choices=data_src()$character)
 		
 	})
 
-	# add player
-	observeEvent(input$add_player, {
+	# add character
+	observeEvent(input$add_character, {
 	
 		char_src <- data_src()
 		# check if a name for the new character was entered
@@ -65,31 +65,31 @@ server <- function(input, output, session) {
 			char_src <- data_src(add_character(char_src, firstup(input$add_me)))
 		}
 		# update the playing characters
-		updateSelectInput(session, "player", "Select character", choices=data_src()$player)
+		updateSelectInput(session, "character", "Select character", choices=data_src()$character)
 		
 	})
 	
-	# partially hide a player
-	observeEvent(input$partially_hide_player, {
+	# partially hide a character
+	observeEvent(input$partially_hide_character, {
 	
 		char_src <- data_src()
-		char_src <- data_src(partially_hide(char_src, input$player))
-		
-	})
-
-	# completely hide a player
-	observeEvent(input$completely_hide_player, {
-	
-		char_src <- data_src()
-		char_src <- data_src(completely_hide(char_src, input$player))
+		char_src <- data_src(partially_hide(char_src, input$character))
 		
 	})
 
-	# un-hide a player
-	observeEvent(input$un_hide_player, {
+	# completely hide a character
+	observeEvent(input$completely_hide_character, {
 	
 		char_src <- data_src()
-		char_src <- data_src(un_hide(char_src, input$player))
+		char_src <- data_src(completely_hide(char_src, input$character))
+		
+	})
+
+	# un-hide a character
+	observeEvent(input$un_hide_character, {
+	
+		char_src <- data_src()
+		char_src <- data_src(un_hide(char_src, input$character))
 		
 	})
 	

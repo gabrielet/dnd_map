@@ -6,31 +6,31 @@ firstup <- function(char_name) {
 }
 
 # move character using the coordinates provided with the mouse click
-move_player <- function(data_src, pname, x_pos=0, y_pos=0) {
+move_character <- function(data_src, cname, x_pos=0, y_pos=0) {
 
 	# modify the x and y positions in the data frame
-	data_src$x_pos[which(data_src$player==pname)] <- x_pos
-	data_src$y_pos[which(data_src$player==pname)] <- y_pos
+	data_src$x_pos[which(data_src$character==cname)] <- x_pos
+	data_src$y_pos[which(data_src$character==cname)] <- y_pos
 	# return updated data_src
 	return(data_src)
 	
 }
 
 # add new character
-add_character <- function(data_src, pname) {
+add_character <- function(data_src, cname) {
 
 	# add character from the dataframe
-	data_src <- rbind.data.frame(cbind.data.frame(player=pname, x_pos=5, y_pos=5, shape=22, colour="firebrick1", hidden=0), data_src)
+	data_src <- rbind.data.frame(cbind.data.frame(character=cname, x_pos=5, y_pos=5, shape=22, colour="firebrick1", hidden=0), data_src)
 	# return updated data_src
 	return(data_src)
 	
 }
 
 # remove character
-remove_character <- function(data_src, pname) {
+remove_character <- function(data_src, cname) {
 
 	# remove character from the dataframe
-	data_src <- data_src[-which(data_src$player==pname), ]
+	data_src <- data_src[-which(data_src$character==cname), ]
 	# return updated data_src
 	return(data_src)
 	
@@ -41,10 +41,10 @@ plot_map <- function(data_src, map_img) {
 
 	# create palette from the input table
 	char_palette <- data_src$colour
-	names(char_palette) <- unique(data_src$player)
+	names(char_palette) <- unique(data_src$character)
 
 	# create the plot
-	the_map <- ggplot(data_src, aes(x=x_pos, y=y_pos, fill=player)) +
+	the_map <- ggplot(data_src, aes(x=x_pos, y=y_pos, fill=character)) +
 			# add the map as a background
 			background_image(map_img) +
 			# select shape and size for characters
@@ -53,7 +53,7 @@ plot_map <- function(data_src, map_img) {
 			geom_point(shape=21, color="black", size=6, stroke=2, alpha=(1-data_src$hidden)) +
 			scale_fill_manual(values=char_palette) +
 			# add characters names
-			geom_text(label=data_src$player, nudge_x=-2.5, nudge_y=-2.5, size=8, fontface="bold") +
+			geom_text(label=data_src$character, nudge_x=-2.5, nudge_y=-2.5, size=8, fontface="bold") +
 			xlab("") +
 			ylab("") +
 			# fix dimensions for x and y axis
@@ -66,29 +66,29 @@ plot_map <- function(data_src, map_img) {
 	
 }
 
-# partially hide player
-partially_hide <- function(data_src, pname) {
+# partially hide character
+partially_hide <- function(data_src, cname) {
 	
 	# set alpha
-	data_src$hidden[which(data_src$player==pname)] <- 0.5
+	data_src$hidden[which(data_src$character==cname)] <- 0.5
 	return(data_src)
 	
 }
 
-# completely hide player
-completely_hide <- function(data_src, pname) {
+# completely hide character
+completely_hide <- function(data_src, cname) {
 	
 	# set alpha
-	data_src$hidden[which(data_src$player==pname)] <- 1
+	data_src$hidden[which(data_src$character==cname)] <- 1
 	return(data_src)
 	
 }
 
-# un-hide player
-un_hide <- function(data_src, pname) {
+# un-hide character
+un_hide <- function(data_src, cname) {
 	
 	# set alpha
-	data_src$hidden[which(data_src$player==pname)] <- 0
+	data_src$hidden[which(data_src$character==cname)] <- 0
 	return(data_src)
 	
 }
